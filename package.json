@@ -1,0 +1,23 @@
+{
+  "name": "dom-renderer",
+  "version": "1.0.0",
+  "description": "Small example of how object animation and manipulation ca be done with JS DOM manipulation and CSS animation.",
+  "main": "src/Controller.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yUtopist/DOM-Renderer.git"
+  },
+  "author": "Aleksei Stukalov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yUtopist/DOM-Renderer/issues"
+  },
+  "homepage": "https://github.com/yUtopist/DOM-Renderer#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+:root {
+	--gv-width: 100%;
+	--gv-height: 100%;
+	--clr-background: #00b1ff;
+	--clr-foreground: #454545;
+}
+
+* {
+	box-sizing: none;
+	list-style: none;
+
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: var(--clr-background);
+
+	font-family: Roboto, Helvetica, Arial;
+	font-weight: 300;
+	font-size: 1rem;
+}
+
+#dev-console {
+	width: 300px;
+	height: auto;
+
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+
+	background-color: rgba(255, 255, 255, 0.3);
+	overflow: hidden;
+}
+
+#dev-console > * {
+	padding: 1rem;
+}
+
+#dev-console > * > h4 {
+	width: 200px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	color: white;
+	font-weight: 300;
+}
+
+#dev-console_toggle {
+	width: 100%;
+	padding: 0.5rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(255, 255, 255, 0);
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+#dev-console_toggle:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hidden {
+	height: 2rem !important;
+}
+
+#game-view {
+	position: relative;
+	overflow: hidden;
+
+	width: var(--gv-width);
+	height: var(--gv-height);
+
+	background-image: url('./static/img/road_bg.png');
+	background-repeat: repeat;
+
+	background-color: var(--clr-foreground);
+}
+
+#game-view::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background: radial-gradient(
+		circle,
+		rgba(60, 60, 60, 1) 0%,
+		rgba(149, 149, 149, 1) 35%,
+		rgba(198, 198, 198, 1) 100%
+	);
+	opacity: 0.5;
+}
+
+#game-panel {
+	position: absolute;
+	bottom: 1rem;
+	z-index: 1000;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+.button {
+	padding: 16px 42px;
+	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+	line-height: 1.25;
+	background: #fc6e51;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	position: relative;
+	transition: background-color 0.6s ease;
+	overflow: hidden;
+}
+.button:after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 50%;
+	left: 50%;
+	top: var(--mouse-y);
+	left: var(--mouse-x);
+	transform-style: flat;
+	transform: translate3d(-50%, -50%, 0);
+	background: rgba(white, 0.1);
+	border-radius: 100%;
+	transition: width 0.3s ease, height 0.3s ease;
+}
+.button:focus,
+.button:hover {
+	background: darken(#fc6e51, 50%);
+}
+.button:active:after {
+	width: 300px;
+	height: 300px;
+}
+
+#objectA {
+	top: 150px;
+	left: 300px;
+}
+
+#objectB {
+	top: 450px;
+	left: 600px;
+}
+
+.object {
+	--starting: translate(0px, 0px);
+	--arriving: translate(150px, 150px);
+	--duration: 1s;
+	--flip: scaleX(1);
+
+	z-index: 10;
+
+	cursor: default;
+	user-select: none;
+
+	position: absolute;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+
+	animation-name: transition;
+	animation-duration: var(--duration);
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes transition {
+	from {
+		transform: var(--starting) var(--flip);
+	}
+	to {
+		transform: var(--arriving) var(--flip);
+	}
+}
